@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aliye & Mustafa Fatih - Nişan Davetiyesi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-bg: #0f172a;
+            --navy-card: #17233c;
+            --navy-border: #263656;
+            --dusty-rose: #d99b9e;
+            --dusty-rose-hover: #c9868a;
+            --blush-soft: #f9eef0;
+            --cream-white: #fffafa;
+            --text-light: #f8fafc;
+            --text-muted: #cbd5e1;
+            --text-dark: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #090e1a;
+            color: var(--text-light);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .invitation-container {
+            width: 100%;
+            max-width: 440px;
+            background-color: var(--navy-bg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            overflow-x: hidden;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        /* Üst Kapak Alanı */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            min-height: 440px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 32px 24px 28px;
+            background-size: cover;
+            background-position: center top;
+            background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85');
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(15, 23, 42, 0.15) 0%,
+                rgba(15, 23, 42, 0.55) 45%,
+                rgba(15, 23, 42, 0.96) 85%,
+                var(--navy-bg) 100%
+            );
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .guest-greeting {
+            font-size: 0.95rem;
+            color: var(--blush-soft);
+            font-weight: 500;
+            margin-bottom: 6px;
+            letter-spacing: 0.2px;
+        }
+
+        .couple-names {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.35rem;
+            font-weight: 700;
+            line-height: 1.12;
+            color: #ffffff;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+
+        .couple-names span {
+            color: var(--dusty-rose);
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .invite-subtitle {
+            font-size: 0.96rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .note-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--dusty-rose);
+            color: #1a1216;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.15s ease, background-color 0.2s ease;
+            box-shadow: 0 4px 15px rgba(217, 155, 158, 0.3);
+        }
+
+        .note-btn:hover {
+            background-color: var(--dusty-rose-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Ana İçerik Alanı */
+        .main-content {
+            padding: 8px 20px 0;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+
+        .section-heading svg {
+            color: var(--dusty-rose);
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Etkinlik Detay Kartı */
+        .event-card {
+            background-color: var(--navy-card);
+            border: 1px solid var(--navy-border);
+            border-radius: 16px;
+            padding: 22px 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .detail-row:last-of-type {
+            margin-bottom: 20px;
+        }
+
+        .detail-icon {
+            width: 22px;
+            height: 22px;
+            color: var(--dusty-rose);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .detail-text {
+            font-size: 1.02rem;
+            font-weight: 500;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .location-link {
+            display: inline-block;
+            margin-top: 4px;
+            font-size: 0.88rem;
+            color: var(--dusty-rose);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+
+        .calendar-btn-wrapper {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .calendar-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(217, 155, 158, 0.16);
+            color: var(--blush-soft);
+            border: 1px solid var(--dusty-rose);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .calendar-btn:hover {
+            background-color: var(--dusty-rose);
+            color: #1a1216;
+        }
+
+        /* Aile Kartları */
+        .family-card {
+            background-color: var(--cream-white);
+            color: var(--text-dark);
+            border-radius: 16px;
+            padding: 22px 22px;
+            margin-bottom: 16px;
+            border-left: 5px solid var(--dusty-rose);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .family-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f1e4e6;
+        }
+
+        .family-header svg {
+            width: 24px;
+            height: 24px;
+            color: #b87377;
+        }
+
+        .family-header h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--navy-bg);
+        }
+
+        .family-row {
+            font-size: 0.98rem;
+            line-height: 1.75;
+            color: #475569;
+        }
+
+        .family-row strong {
+            color: var(--navy-bg);
+            font-weight: 700;
+        }
+
+        /* Modal (Davetiye Notu Penceresi) */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(9, 14, 26, 0.8);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 100;
+        }
+
+        .modal-backdrop.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background-color: var(--cream-white);
+            color: var(--text-dark);
+            width: 100%;
+            max-width: 380px;
+            border-radius: 20px;
+            padding: 26px 24px;
+            border-top: 6px solid var(--dusty-rose);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: popIn 0.22s ease-out;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.94); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--navy-bg);
+            margin-bottom: 12px;
+        }
+
+        .modal-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #334155;
+            margin-bottom: 16px;
+        }
+
+        .program-box {
+            background-color: var(--blush-soft);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 18px;
+            font-size: 0.88rem;
+            color: var(--navy-bg);
+        }
+
+        .program-box div {
+            margin-bottom: 4px;
+        }
+
+        .program-box div:last-child {
+            margin-bottom: 0;
+        }
+
+        .modal-close {
+            width: 100%;
+            padding: 11px;
+            background-color: var(--navy-bg);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.78rem;
+            color: #64748b;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invitation-container">
+        <!-- Üst Fotoğraf & Karşılama -->
+        <header class="hero-section" id="heroCover">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <p class="guest-greeting" id="guestName">Değerli Misafirimiz,</p>
+                <h1 class="couple-names">
+                    Aliye Ergün <span>&amp;</span><br>
+                    Mustafa Fatih Dalkıran
+                </h1>
+                <p class="invite-subtitle">
+                    sizleri bu mutlu günlerinde yanlarında görmekten mutluluk duyar.
+                </p>
+                <button class="note-btn" onclick="openModal()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    Davetiye notunu gör
+                </button>
+            </div>
+        </header>
+
+        <!-- Nişan Detayları -->
+        <main class="main-content">
+            <h2 class="section-heading">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+                Nişan
+            </h2>
+
+            <section class="event-card">
+                <!-- Tarih -->
+                <div class="detail-row">
+                    <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <div class="detail-text">13 Aralık 2026 Pazar</div>
+                </div>
+
+                <!-- Saat -->
+                <div class="detail-row">
+                    <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <div class="detail-text">19:30</div>
+                </div>
+
+                <!-- Mekan -->
+                <div class="detail-row">
+                    <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <div class="detail-text">
+                        SOBE Vakfı, Konya
+                        <br>
+                        <a href="https://www.google.com/maps/search/?api=1&query=SOBE+Vakf%C4%B1+Konya" target="_blank" rel="noopener" class="location-link">
+                            Adres detayı / Yol tarifi için tıklayın
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Takvime Ekle -->
+                <div class="calendar-btn-wrapper">
+                    <button class="calendar-btn" onclick="addToCalendar()">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                            <line x1="12" y1="14" x2="12" y2="18"></line>
+                            <line x1="10" y1="16" x2="14" y2="16"></line>
+                        </svg>
+                        Takvime ekle
+                    </button>
+                </div>
+            </section>
+
+            <!-- Gelin Ailesi Kartı -->
+            <section class="family-card">
+                <div class="family-header">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <h3>Gelin ailesi</h3>
+                </div>
+                <div class="family-row">Gelin: <strong>Aliye Ergün</strong></div>
+                <div class="family-row">Anne: <strong>RAZİYE ERGÜN</strong></div>
+                <div class="family-row">Baba: <strong>MEHMET ERGÜN</strong></div>
+            </section>
+
+            <!-- Damat Ailesi Kartı -->
+            <section class="family-card">
+                <div class="family-header">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <h3>Damat ailesi</h3>
+                </div>
+                <div class="family-row">Damat: <strong>Mustafa Fatih Dalkıran</strong></div>
+                <div class="family-row">Anne: <strong>HATİCE DALKIRAN</strong></div>
+                <div class="family-row">Baba: <strong>RAMAZAN DALKIRAN</strong></div>
+            </section>
+
+            <p class="footer-note">Aliye &amp; Mustafa Fatih • 13.12.2026</p>
+        </main>
+    </div>
+
+    <!-- Davetiye Notu Modal -->
+    <div class="modal-backdrop" id="noteModal" onclick="closeModalOnBg(event)">
+        <div class="modal-box">
+            <h3 class="modal-title">Davetiye Notumuz</h3>
+            <p class="modal-text">
+                Birlikteliğimizin bu ilk resmi adımında, mutluluğumuzu siz kıymetli sevdiklerimizle paylaşmaktan büyük onur duyacağız.
+            </p>
+            <div class="program-box">
+                <div><strong>19:30</strong> — Misafir Karşılama</div>
+                <div><strong>20:00</strong> — Nişan Merasimi</div>
+            </div>
+            <button class="modal-close" onclick="closeModal()">Kapat</button>
+        </div>
+    </div>
+
+    <script>
+        // URL parametresi ile isme özel karşılama (?isim=Ahmet+Yılmaz)
+        const params = new URLSearchParams(window.location.search);
+        const guest = params.get('isim');
+        if (guest && guest.trim() !== '') {
+            document.getElementById('guestName').textContent = 'Değerli ' + guest.trim() + ',';
+        }
+
+        function openModal() {
+            document.getElementById('noteModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('noteModal').classList.remove('active');
+        }
+
+        function closeModalOnBg(e) {
+            if (e.target.id === 'noteModal') {
+                closeModal();
+            }
+        }
+
+        function addToCalendar() {
+            const title = encodeURIComponent('Aliye & Mustafa Fatih Nişan Töreni');
+            const details = encodeURIComponent('Aliye Ergün ve Mustafa Fatih Dalkıran nişan törenine davetlisiniz.');
+            const location = encodeURIComponent('SOBE Vakfı, Konya');
+            const start = '20261213T163000Z';
+            const end = '20261213T200000Z';
+            const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}`;
+            window.open(googleCalUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
